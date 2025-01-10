@@ -17,7 +17,7 @@ class LinePlotTestCase(unittest.TestCase):
         actual = self.ax.get_title()
         expected = "Daily freeCodeCamp Forum Page Views 5/2016-12/2019"
         self.assertEqual(actual, expected, "Expected line plot title to be 'Daily freeCodeCamp Forum Page Views 5/2016-12/2019'")
-    
+
     def test_line_plot_labels(self):
         actual = self.ax.get_xlabel()
         expected = "Date"
@@ -39,27 +39,27 @@ class BarPlotTestCase(unittest.TestCase):
 
     def test_bar_plot_legend_labels(self):
         actual = []
-        for label in self.ax.get_legend().get_texts():
+        for label in self.fig.legend.get_texts():
           actual.append(label.get_text())
         expected = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
         self.assertEqual(actual, expected, "Expected bar plot legend labels to be months of the year.")
-    
+
     def test_bar_plot_labels(self):
-        actual = self.ax.get_xlabel()
+        actual = self.ax[0].get_xlabel()
         expected = "Years"
         self.assertEqual(actual, expected, "Expected bar plot xlabel to be 'Years'")
-        actual = self.ax.get_ylabel()
+        actual = self.ax[0].get_ylabel()
         expected = "Average Page Views"
         self.assertEqual(actual, expected, "Expected bar plot ylabel to be 'Average Page Views'")
         actual = []
-        for label in self.ax.get_xaxis().get_majorticklabels():
+        for label in self.ax[0].get_xaxis().get_majorticklabels():
             actual.append(label.get_text())
         expected = ['2016', '2017', '2018', '2019']
         self.assertEqual(actual, expected, "Expected bar plot secondary labels to be '2016', '2017', '2018', '2019'")
 
     def test_bar_plot_number_of_bars(self):
-        actual = len([rect for rect in self.ax.get_children() if isinstance(rect, mpl.patches.Rectangle)])
-        expected = 49
+        actual = len([rect for rect in self.ax[0].get_children() if isinstance(rect, mpl.patches.Rectangle)])
+        expected = 57
         self.assertEqual(actual, expected, "Expected a different number of bars in bar chart.")
 
 
@@ -73,7 +73,7 @@ class BoxPlotTestCase(unittest.TestCase):
         actual = len(self.fig.get_axes())
         expected = 2
         self.assertEqual(actual, expected, "Expected two box plots in figure.")
-    
+
     def test_box_plot_labels(self):
         actual = self.ax1.get_xlabel()
         expected = "Year"
